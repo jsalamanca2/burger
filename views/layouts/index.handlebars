@@ -1,0 +1,17 @@
+<h1>Food</h1>
+
+<h3>THINGs done</h3>
+
+<ul>
+	{{#each food}}
+		<li>
+			<p>Item: {{this.item}} </p>
+		</li>
+	{{/each}}
+</ul>
+
+<form action="/" method="POST">
+	<textarea type="text" name="event"></textarea>
+
+	<button type="submit">Submit</button>
+</form>	
