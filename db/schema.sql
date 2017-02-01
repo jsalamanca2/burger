@@ -1,12 +1,13 @@
-### Schema
+## Schema of the database
 CREATE DATABASE burgers_db;
 USE burgers_db;
 
-CREATE TABLE Food
-(
-	id int NOT NULL AUTO_INCREMENT,
-	food_name varchar(255) NOT NULL,
-	devoured TEXT NOT NULL,
-	date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY (id)
-);
+CREATE TABLE `burgers_db`.`burger` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `burger_name` VARCHAR(255) NOT NULL,
+  `devoured` TINYINT NOT NULL,
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+
+
+  );

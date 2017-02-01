@@ -1,4 +1,4 @@
-var queries = require("../config/orm.js")
+var queries = require("../models/burger.js")
 
 
 
@@ -9,23 +9,18 @@ module.exports =  function(app,port){
 			console.log("listening on port " + port)
 		})
 
-
-
 		app.get("/", function(err,res){
-			queries.selectAll(function(err,data){
-				console.log(data)
-				res.render("index", {food:data})
+			queries.select(function(resp,data){
+				res.render("index", {burger:data})
 			})
-			
 		})
 
-
 		app.post("/", function(req,res){
-			queries.insertInto(req.body.food, function(err,data){
+			queries.insert(req.body.burgers, function(err,data){
+					console.log(req.body.burgers)
 				res.redirect("/")
 			})
 		})
 
 
 }// end controller
-	
