@@ -1,32 +1,18 @@
-var orm = require("./connection.js")
-
-
-orm.connection.connect(function(err){
-	if (err)throw err 
-		console.log("connected as id " + orm.connection.threadId)
-
-})
+var connection = require("./connection.js")
 
 // Generic queries for selection, insert and updating
 var queries = {
-	selectAll:  function(table, callback){
-	orm.connection.query("SELECT * FROM " + table, callback)
+		selectAll :function (callback) {
+		connection.query('SELECT * FROM burgers', callback)
 	},
-	insertInto: function(table, burger, callback){
-		orm.connection.query("INSERT INTO " + table +" SET ?",[{
-			burger_name: burger
-		}], callback)
+	//new burgers
+		insertOne :function (newestBurger, callback) {
+		connection.query('INSERT INTO burgers (burger_name) VALUES (?)', newestBurger, callback)
 	},
-	update: function(table, eaten, number){
-		orm.connection.query("UPDATE" + table + " SET ? WHERE ?",[{
-			devoured: eaten
-			},{
-				ID: number
-			}], function(err,res){
-				console.log(res)
-			})
+	//updating the burgers to be eaten
+		updateOne : function (id, callback) {
+		connection.query("UPDATE burgers SET devoured = 1 WHERE id = ?",id, callback)
 	}
-
 }
 
 
